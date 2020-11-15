@@ -1,28 +1,16 @@
 <html lang="en">
-
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
-  <meta name="author" content="Tulisno">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&amp;display=swap"
-    rel="stylesheet">
-
-  <title>Tulisno | Web Auto Nulis Tugas</title>
-  <!--
-
--->
-
+  <meta name="author" content="Tech Pen">
+  <title>Tech Pena</title>
   <!-- Additional CSS Files -->
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-
   <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
-
   <link rel="stylesheet" href="assets/css/templatemo-lava.css">
-
   <link rel="stylesheet" href="assets/css/owl-carousel.css">
-
+  <link rel="manifest" href="./manifest.json">
   <style>
     @font-face {
       font-family: HandwritingCR-2;
@@ -30,29 +18,23 @@
     }
   </style>
 </head>
-
 <body>
-
-
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky background-header">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <nav class="main-nav">
-            <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
-              Tulisno
-            </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
-            <ul class="nav">
+            <h2 class="logo" id="tulisan__saya">Tecnologi Pena</h2>
+            <ul class="nav" id="list__nav">
               <li class="scroll-to-section"><a href="#welcome" class="menu-item">Home</a></li>
-
-              <li class="scroll-to-section"><a href="#Tulisno" class="menu-item active">Tulisno</a>
+              <li class="scroll-to-section"><a href="#Tulisno" class="menu-item active">Tech Pen</a>
               </li>
-
               <li class="scroll-to-section"><a href="#contact-us" class="menu-item">Contact Us</a></li>
+              <li>
+                <div class="nav2" id="fitur-dark">🌒</div>
+                  <p id="keadaan">Dark Mode</p>
+              </li>
             </ul>
             <a class="menu-trigger">
               <span>Menu</span>
@@ -63,9 +45,11 @@
       </div>
     </div>
   </header>
+
+
+
+
   <!-- ***** Header Area End ***** -->
-
-
   <!-- ***** Welcome Area Start ***** -->
   <div class="welcome-area" id="welcome">
 
@@ -73,15 +57,21 @@
     <div class="header-text">
       <div class="container">
         <div class="row">
-          <div class="left-text col-lg-6 col-md-12 col-sm-12 col-xs-12"
+          <div class="left-text col-lg-6 col-md-6 col-sm-12 col-xs-12"
             data-scroll-reveal="enter left move 30px over 0.6s after 0.4s" data-scroll-reveal-id="1"
             data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-            <h1>Tulisno <em>.</em></h1>
-            <p>Mager mau nulis offline? .
-              Mending pakai tulisno.
-              Tulisno merupakan website nulis otomatis bagi kalian yg mager nulis dikertas</p>
+            <h1 class="text-muted">Tech Pen</h1>
+            <p class="text-muted">Males mau nulis tangan? .
+              Mending pakai Tech Pen.
+              Tech Pen merupakan website nulis otomatis bagi kalian yg males nulis tangan dikertas</p>
             <a href="#about" class="main-button-slider">Start</a>
           </div>
+        </div>
+        <div class="form-group lovee">
+          <button class="main-button"
+            onclick="downloadCanvas(document.getElementById('defaultCanvas0'), 'hasil.png')">
+            Siap Nulis??? Download Here
+          </button>
         </div>
       </div>
     </div>
@@ -92,12 +82,12 @@
   <div class="left-image-decor"></div>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
   <script>
-    let bg, font, margin, gap, fontsize = 16;
+    let bg, font, margin, gap, fontsize = 14;
     let txtDate = '',
       txtName = '',
       txtContent = '';
-
-    let fonts = [{
+   
+let fonts = [{
         'index': 0,
         'name': 'HandwritingCR 2',
         'file': 'HandwritingCR-2.ttf'
@@ -118,6 +108,23 @@
         'file': 'ShadowsIntoLight-Regular.ttf'
       }
     ];
+    let backgroundImg = [
+        {
+          index: 0,
+          name: "Double Folio",
+          file: "folio_bergaris.jpg",
+        },
+        {
+          index: 1,
+          name: "Buku Biasa",
+          file: "folio2.jpg",
+        },
+        {
+          index: 2,
+          name: "kertas Campus",
+          file: "kertasBINDER.jpeg",
+        },  
+      ];
 
     let getFontIndex = () => {
       let fontIndex = localStorage.getItem('fontIndex');
@@ -126,35 +133,35 @@
       }
       return fonts[0];
     }
+    let getFileImage = () => {
+        let imgIndex = localStorage.getItem("bookIndex");
+        if (imgIndex) {
+          return backgroundImg[imgIndex];
+        }
+        return backgroundImg[0];
+      };
 
     // canvas
-    function preload() {
-
-    }
-
     function setup() {
       // ukuran asli gambar 300x441
-      createCanvas(300 * 2, 447 * 2);
-      bg = loadImage('/img/folio.jpg');
+      createCanvas(150 * 2, 247 * 2);
+      bg = loadImage("/img/" + getFileImage().file);
       font = loadFont('/fonts/' + getFontIndex().file);
-
       textFont(font);
       textSize(fontsize);
     }
 
     function draw() {
-      // fix_dpi();
-      background(bg);
-      margin = 20;
-      fill(0, 0, 0, 200);
-      translate(margin - 8, margin * 4);
-      text(txtName, 0, 0);
-      text(txtDate, 450, 0);
-      translate(0, margin + 7);
-
-      text(txtContent, 0, 0, 580 /*, 800 */ );
+         // fix_dpi();
+        background(bg);
+        margin = 10.5;
+        fill(0, 0, 0, 700);
+        translate(margin - 8, margin * 3);
+        text(txtName, 0, 0);
+        text(txtDate, 210, 0);
+        translate(0, margin + 7);
+        text(txtContent, 0, 0, 580 /*, 800 */);
     }
-
     document.addEventListener('DOMContentLoaded', (e) => {
       let fontSelectEl = document.getElementById('font');
       let fontSelectOptionTemplate = (index, name) => {
@@ -167,6 +174,19 @@
       });
       fontSelectEl.innerHTML = _temp;
     });
+    document.addEventListener("DOMContentLoaded", (e) => {
+        let fileGambar = document.getElementById("book");
+        let imgSelectOptionTemplate = (index, name) => {
+          let _terpilih = index == getFileImage().index ? "selected" : "";
+          return `<option value="${index}" ${_terpilih}>${name}</option>`;
+        };
+        let _img = "";
+        backgroundImg.forEach((img, index) => {
+          _img += imgSelectOptionTemplate(index, img.name);
+        });
+        fileGambar.innerHTML = _img;
+      });
+  
   </script>
   <script>
     function downloadCanvas(c, filename) {
@@ -218,46 +238,36 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="font">Select Font:</label>
+                  <label for="font">Pilih Font:</label>
                   <select class="form-control" id="font"
                     onchange="localStorage.setItem('fontIndex', this.value);setup()"></select>
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="font">Select Book:</label>
+                  <label for="font">Pilih Buku:</label>
                   <select class="form-control" id="book"
                     onchange="localStorage.setItem('bookIndex', this.value);setup()"></select>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="date">Hari/Tanggal</label>
+                  <label for="date">Tanggal</label>
                   <input type="text" class="form-control" id="date" oninput="txtDate = this.value">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="name">Nama</label>
+                  <label for="name">Nama </label>
                   <input type="text" class="form-control" id="name" oninput="txtName = this.value">
                 </div>
               </div>
               <div class="form-group">
-                <label for="comment">Comment:</label>
+                <label for="comment">Tulis Kata : <br> <span style="font-size: 10px !important;" class="text-warning"></span></label>
                 <textarea class="form-control" id="content" rows="10" oninput="txtContent = this.value"></textarea>
               </div>
-
-
             </div>
-            <div class="form-group">
-
-              <button class="main-button"
-                onclick="downloadCanvas(document.getElementById('defaultCanvas0'), 'hasil.png')">Download</button>
-            </div>
+            
           </div>
         </div>
-        <div class="col-lg-6 col-md-12 col-sm-12">
-
-
-          <main class="paper-container"></main>
-
-          
+        <div class="col-lg-6 col-md-12 paper-jam">
+          <main class="img-fluid"></main>
         </div>
       </div>
     </div>
@@ -312,11 +322,7 @@
           </div>
           <!-- ***** Contact Form End ***** -->
           <div class="right-content col-lg-6 col-md-12 col-sm-12">
-            <h2>More About Tulisno</h2>
-            <p>Mager mau nulis offline? . Mending pakai tulisno. Tulisno merupakan website nulis otomatis bagi kalian yg mager nulis dikertas
-              <br><br>If you need this contact form to send email to your inbox, you may follow our <a rel="nofollow"
-                href="https://www.facebook.com/wilsen.orochi.9" target="_parent">contact</a> page
-              for more detail.</p>
+            <h3>Follow Me</h3>
             <ul class="social">
               <li><a href="https://www.facebook.com/wilsen.orochi.9"><i class="fa fa-facebook"></i></a></li>
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -330,31 +336,56 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="sub-footer">
-            <p class="love">Made with ❤ hisyam.ardiansyah_</p>
-
+            <p class="love">Made with ❤ deedyy</p>
           </div>
         </div>
       </div>
     </div>
   </footer>
+  <div class="bottom__Menu">
+    <div class="home">
+      <a href="#welcome" class="menu-item">
+        <i class="fa fa-1x fa-home"></i>
+      </a>
+      <p>Home</p>
+    </div>
+    <div class="pencil">
+      <a href="#Tulisno" class="menu-item">
+        <i class="fa fa-1x fa-pencil-square"></i>
+      </a>
+      <p>Tulis</p>
+    </div>
+    <div class="mode-dark">
+      <i id="dark-mode-toggle" class="fa fa-1x">🌒</i>
+      <p style="font-size: 10px !important;" id="condition">Dark Mode</p>
+    </div>
+    <div class="email">
+      <a href="#contact-us" class="menu-item">
+        <i class="fa fa-1x fa-mail-forward"></i>
+      </a>
+      <p>Email</p>
+    </div>
+    <div class="setting">
+      <i onclick="downloadCanvas(document.getElementById('defaultCanvas0'), 'hasil.png')" class="fa fa-1x fa-download"></i>
+      <p style="font-size: 10px !important;">Unduh Kertas</p>
+    </div>
+  </div>
 
   <!-- jQuery -->
   <script src="assets/js/jquery-2.1.0.min.js"></script>
-
   <!-- Bootstrap -->
   <script src="assets/js/popper.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
-
   <!-- Plugins -->
   <script src="assets/js/owl-carousel.js"></script>
   <script src="assets/js/scrollreveal.min.js"></script>
-  <script src="assets/js/waypoints.min.js"></script>
   <script src="assets/js/jquery.counterup.min.js"></script>
   <script src="assets/js/imgfix.min.js"></script>
 
   <!-- Global Init -->
-  <script src="assets/js/custom.js"></script>
-
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/custom.js"></script>
+  <script src="./assets/app.js"></script> 
 
 
 </body>
