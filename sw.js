@@ -1,6 +1,6 @@
 const staticCacheName = "site-static-v2";
 const dynamicCache = "site-dynamic-v1";
-// assets for pre-Caching
+
 const assets = [
   "/",
   "/index.html",
@@ -18,19 +18,22 @@ const assets = [
   "/assets/css/font-awesome.css",
   "/assets/css/templatemo-lava.css",
   "/assets/css/owl-carousel.css",
+  "https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js",
+  "/img/folio_bergaris.jpg",
+  "/img/folio2.jpg",
+  "/img/kertasBINDER.jpeg",
 ];
 
 self.addEventListener("install", (evt) => {
   // definisi SW ketika di install adalah ia akan berhenti penginstalan ketika browser di load
   // if not exist he make a cache with name staticCacheName and if exist he make her
-  // Caches.open result a promise
+  // Caches.open result a Promis
   evt.waitUntil(
     caches.open(staticCacheName).then((cache) => {
       cache.addAll(assets);
     })
   );
 });
-
 // activated service worker
 self.addEventListener("activate", (evt) => {
   evt.waitUntil(
