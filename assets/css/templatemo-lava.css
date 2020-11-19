@@ -1254,11 +1254,20 @@ footer .sub-footer p {
   }
 }
 @media screen and (max-width: 576px) {
+  .welcome-area {
+    background-image: url(../images/logo.png);
+  }
+  .warna{
+    background-color: aquamarine;
+  }
   header {
     display: none;
   }
   .main-button-slider {
     display: none;
+  }
+  .tech-pena {
+    margin-top: -70px !important;
   }
   .bottom__Menu {
     background-color: #e9e6e6;

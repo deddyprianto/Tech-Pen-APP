@@ -25,8 +25,8 @@ const assets = [
 ];
 
 self.addEventListener("install", (evt) => {
-  // definisi SW ketika di install adalah ia akan berhenti penginstalan ketika browser di load
-  // if not exist he make a cache with name staticCacheName and if exist he make her
+  // definisi SW ketika di insall alah ia akan berhenti penginstalan ketika browser di load
+  // if not exist he make a cache with name staticCachName and if exist he make her
   // Caches.open result a Promis
   evt.waitUntil(
     caches.open(staticCacheName).then((cache) => {
@@ -34,7 +34,7 @@ self.addEventListener("install", (evt) => {
     })
   );
 });
-// activated service worker
+// activated service worke
 self.addEventListener("activate", (evt) => {
   evt.waitUntil(
     caches.keys().then((key) => {

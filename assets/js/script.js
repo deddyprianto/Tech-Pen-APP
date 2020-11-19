@@ -16,6 +16,8 @@ function enableDarkMode() {
   document.body.classList.add("dark-mode");
   const warna = document.getElementById("tulisan__saya");
   warna.classList.add("text__warna");
+  const saya = document.getElementById("welcome");
+  saya.classList.remove("warna");
   const text = document.querySelector("#condition");
   text.innerHTML = "Light Mode";
   toggleButton.innerHTML = "☀️";
@@ -33,4 +35,6 @@ function disableDarkMode() {
   toggleButton.innerHTML = "🌒";
   const bacground = document.getElementById("list__nav");
   bacground.classList.remove("tranparent__backNav");
+  const saya = document.getElementById("welcome");
+  saya.classList.add("warna");
 }
