@@ -11,7 +11,11 @@
   <link rel="stylesheet" href="assets/css/templatemo-lava.css">
   <link rel="stylesheet" href="assets/css/owl-carousel.css">
   <link rel="manifest" href="./manifest.json">
-  <style>
+  <!-- ios support -->
+<link rel="apple-touch-icon" href="./img/icons/icons96.png">
+<meta name="apple-mobile-web-app-status-bar" content="#aa7700">
+<meta name="theme-color" content="#FFE1C4">
+<style>
     @font-face {
       font-family: HandwritingCR-2;
       src: url(/fonts/HandwritingCR-2.ttf);
@@ -31,24 +35,13 @@
               <li class="scroll-to-section"><a href="#Tulisno" class="menu-item active">Tech Pen</a>
               </li>
               <li class="scroll-to-section"><a href="#contact-us" class="menu-item">Contact Us</a></li>
-              <li>
-                <div class="nav2" id="fitur-dark">🌒</div>
-                  <p id="keadaan">Dark Mode</p>
-              </li>
             </ul>
-            <a class="menu-trigger">
-              <span>Menu</span>
-            </a>
             <!-- ***** Menu End ***** -->
           </nav>
         </div>
       </div>
     </div>
   </header>
-
-
-
-
   <!-- ***** Header Area End ***** -->
   <!-- ***** Welcome Area Start ***** -->
   <div class="welcome-area warna" id="welcome">
@@ -61,9 +54,9 @@
             data-scroll-reveal="enter left move 30px over 0.6s after 0.4s" data-scroll-reveal-id="1"
             data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
             <h1 class="text-muted">Tech Pena</h1>
-            <p class="text-muted">Males mau nulis tangan? .
-              Mending pakai Tech Pen.
-              Tech Pen merupakan website nulis otomatis bagi kalian yg males nulis tangan dikertas</p>
+            <p class="text-muted">Mau nulis PUISI,tapi ragu tulisan jelek dan kertas yg tidak sesuai? <br> <br>
+              Mending pakai Tech Pena.
+              Tech Pena merupakan aplikasi nulis otomatis bagi kalian yg malas nulis tangan dikertas</p>
             <a href="#about" class="main-button-slider">Start</a>
           </div>
         </div>
@@ -82,47 +75,89 @@
   <div class="left-image-decor"></div>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
   <script>
-    let bg, font, margin, gap, fontsize = 10;
+    let bg, font, margin, gap, fontsize = 13;
     let txtDate = '',
       txtName = '',
       txtContent = '';
-   
+    let ukuranGambar = '';
 let fonts = [{
         'index': 0,
-        'name': 'HandwritingCR 2',
+        'name': 'Tulisan tegak spasi',
         'file': 'HandwritingCR-2.ttf'
       },
       {
         'index': 1,
-        'name': 'Gloria Hallelujah',
+        'name': 'Tulisan tebal berjarak',
         'file': 'GloriaHallelujah-Regular.ttf'
       },
       {
         'index': 2,
-        'name': 'Heart Warming by Situjuh',
-        'file': 'Heart Warming Font by Situjuh.otf'
+        'name': 'tulisan hitam lebar',
+        'file': 'MyHandsareHoldingYou.ttf'
       },
       {
         'index': 3,
-        'name': 'Shadows Into Light',
+        'name': 'tulisan rapat',
         'file': 'ShadowsIntoLight-Regular.ttf'
+      },
+      {
+        'index': 3,
+        'name': 'tulisan sambung',
+        'file': 'DancingScript-VariableFont_wght.ttf'
       }
     ];
     let backgroundImg = [
         {
           index: 0,
           name: "Double Folio",
-          file: "folio_bergaris.jpg",
+          file: "g4.jpg",
+          
         },
         {
           index: 1,
-          name: "Buku Biasa",
-          file: "folio2.jpg",
+          name: "Kertas Binder",
+          file: "g1.jpg",
+          
         },
         {
           index: 2,
-          name: "kertas Campus",
-          file: "kertasBINDER.jpeg",
+          name: "kertas bukubiasa",
+          file: "g2.jpg",
+        },  
+        {
+          index: 3,
+          name: "kertas binder A5",
+          file: "g3.jpg",
+        },   
+        {
+          index: 4,
+          name: "kertas bingkai pink",
+          file: "g6.jpg",
+        },    
+        {
+          index: 5,
+          name: "kertas bingkai bunga",
+          file: "g7.png",
+        },  
+        {
+          index: 6,
+          name: "kertas alert",
+          file: "g8.jpg",
+        },  
+        {
+          index: 7,
+          name: "kertas style A5",
+          file: "g9.png",
+        },  
+        {
+          index: 8,
+          name: "kertas surat cinta",
+          file: "g12.jpg",
+        },  
+        {
+          index: 9,
+          name: "kertas binder A4",
+          file: "g18.png",
         },  
       ];
 
@@ -133,6 +168,8 @@ let fonts = [{
       }
       return fonts[0];
     }
+    
+    // gambar
     let getFileImage = () => {
         let imgIndex = localStorage.getItem("bookIndex");
         if (imgIndex) {
@@ -144,7 +181,7 @@ let fonts = [{
     // canvas
     function setup() {
       // ukuran asli gambar 300x441
-      createCanvas(150 * 2, 247 * 2);
+      createCanvas(175 * 2, 247 * 2);
       bg = loadImage("/img/" + getFileImage().file);
       font = loadFont('/fonts/' + getFontIndex().file);
       textFont(font);
@@ -152,15 +189,103 @@ let fonts = [{
     }
 
     function draw() {
-         // fix_dpi();
+      if(bg.width === 331){
         background(bg);
         margin = 10.5;
-        fill(0, 0, 0, 800);
+        fill(0, 0, 0,900);
         translate(margin - 8, margin * 3);
         text(txtName, 0, 0);
-        text(txtDate, 210, 0);
+        text(txtDate, 242, 0);
         translate(0, margin + 7);
-        text(txtContent, 0, 0, 580 /*, 800 */);
+        text(txtContent, 0, 1.5, 350 /*, 800 */);
+      }else if(bg.width === 1896){
+        background(bg);
+        margin = 10.5;
+        fill(0, 0, 0,900);
+        translate(margin - 8, margin * 3);
+        text(txtName, 60, 25);
+        text(txtDate, 200, 25);
+        translate(0, margin + 7);
+        text(txtContent, 80, 30, 230 /*, 800 */);
+      }else if(bg.width === 904){
+        background(bg);
+        margin = 10.5;
+        fill(0, 0, 0,900);
+        translate(margin - 8, margin * 3);
+        text(txtName, 40, 0);
+        text(txtDate, 242, 0);
+        translate(0, margin + 7);
+        text(txtContent, 30, 5, 300 /*, 800 */);
+      }else if(bg.width === 1238){
+        background(bg);
+        margin = 10.5;
+        fill(0, 0, 0,900);
+        translate(margin - 8, margin * 3);
+        text(txtName, 5, 0);
+        text(txtDate, 245, 5);
+        translate(0, margin + 7);
+        text(txtContent, 28, 10, 300 /*, 800 */);
+      }
+      else if(bg.width === 640){
+        background(bg);
+        margin = 10.5;
+        fill(0, 0, 0,900);
+        translate(margin - 8, margin * 3);
+        text(txtName, 63, 25);
+        text(txtDate, 200, 25); 
+        translate(0, margin + 7);
+        text(txtContent, 70, 30, 190 /*, 800 */);
+      }
+      else if(bg.width === 801){
+        background(bg);
+        margin = 10.5;
+        fill(0, 0, 0,900);
+        translate(margin - 8, margin * 3);
+        text(txtName, 60, 25);
+        text(txtDate, 242, 25); 
+        translate(0, margin + 7);
+        text(txtContent, 70, 30, 250 /*, 800 */);
+      }
+      else if(bg.width === 802){
+        background(bg);
+        margin = 10.5;
+        fill(0, 0, 0,900);
+        translate(margin - 8, margin * 3);
+        text(txtName, 65, 70);
+        text(txtDate, 180, 70); 
+        translate(0, margin + 7);
+        text(txtContent, 90, 80, 170 /*, 800 */);
+      }
+      else if(bg.width === 900){
+        background(bg);
+        margin = 10.5;
+        fill(0, 0, 0,900);
+        translate(margin - 8, margin * 3);
+        text(txtName, 90, 60);
+        text(txtDate, 190, 60); 
+        translate(0, margin + 7);
+        text(txtContent, 95, 60, 200 /*, 800 */);
+      }
+      else if(bg.width === 960){
+        background(bg);
+        margin = 10.5;
+        fill(0, 0, 0,900);
+        translate(margin - 8, margin * 3);
+        text(txtName, 100, 25);
+        text(txtDate, 200, 25); 
+        translate(0, margin + 7);
+        text(txtContent, 120, 30, 160 /*, 800 */);
+      }
+      else{
+        background(bg);
+        margin = 10.5;
+        fill(0, 0, 0,900);
+        translate(margin - 8, margin * 3);
+        text(txtName, 85, 25);
+        text(txtDate, 242, 25); 
+        translate(0, margin + 7);
+        text(txtContent, 100, 30, 160 /*, 800 */);
+      }
     }
     document.addEventListener('DOMContentLoaded', (e) => {
       let fontSelectEl = document.getElementById('font');
@@ -242,14 +367,14 @@ let fonts = [{
                   <select class="form-control" id="font"
                     onchange="localStorage.setItem('fontIndex', this.value);setup()"></select>
                 </div>
-                <!-- /img/folio_bergaris.jpg -->
+                <!-- folio_bergaris.jpg -->
                 <div class="form-group col-md-6">
-                  <label for="font">Pilih Buku:</label>
+                  <label for="font">Pilih Kertas:</label>
                   <select class="form-control" id="book"
                     onchange="localStorage.setItem('bookIndex', this.value);setup()"></select>
                 </div>
               </div>
-              <div class="form-row">
+              <div class="form-row"> 
                 <div class="form-group col-md-6">
                   <label for="date">Tanggal</label>
                   <input type="text" class="form-control" id="date" oninput="txtDate = this.value">
@@ -260,11 +385,10 @@ let fonts = [{
                 </div>
               </div>
               <div class="form-group">
-                <label for="comment">Tulis Kata : <br> <span style="font-size: 10px !important;" class="text-warning"></span></label>
+                <label for="comment">Tulis Puisi Mu Disini</label>
                 <textarea class="form-control" id="content" rows="10" oninput="txtContent = this.value"></textarea>
               </div>
             </div>
-            
           </div>
         </div>
         <div class="col-lg-6 col-md-12 paper-jam">
@@ -278,8 +402,6 @@ let fonts = [{
   <!-- ***** Features Big Item End ***** -->
 
   <div class="right-image-decor"></div>
-
-
   <!-- ***** Footer Start ***** -->
   <footer id="contact-us">
     <div class="container">
@@ -288,10 +410,8 @@ let fonts = [{
           <!-- ***** Contact Form Start ***** -->
           <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="contact-form">
-              <form id="contact" action="" method="post">
+            
                 <div class="row">
-
-
                   <div class="col-md-6 col-sm-12">
                     <fieldset>
                       <input name="name" type="text" id="name" placeholder="Full Name" required=""
@@ -299,28 +419,23 @@ let fonts = [{
                     </fieldset>
                   </div>
                   <div class="col-md-6 col-sm-12">
-                    <fieldset>
+
                       <input name="email" type="text" id="email" placeholder="E-Mail Address" required=""
                         style="background-color: rgba(250,250,250,0.3);">
-                    </fieldset>
+           
                   </div>
                   <div class="col-lg-12">
-                    <fieldset>
-        
-                    
+             
                       <textarea name="message" rows="6" id="message" placeholder="Your Message" required=""
                         style="background-color: rgba(250,250,250,0.3);"></textarea>
-                    </fieldset>
+          
                   </div>
                   <div class="col-lg-12">
-                    <fieldset>
-                      <button type="submit" id="form-submit" class="main-button">Send Message
-                        Now</button>
-                    </fieldset>
+                      <button onclick="alert('terima kasih atas saran anda, enjoyy yaa')" id="form-submit" class="main-button">Kirim Kan Saran Kalian</button>
                   </div>
                 </div>
 
-              </form>
+
             </div>
           </div>
           <!-- ***** Contact Form End ***** -->
@@ -388,7 +503,7 @@ let fonts = [{
   <!-- Global Init -->
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/custom.js"></script>
-  <script src="./assets/app.js"></script> 
+  <script src="./assets/app.js"></script>
 </body>
 
 </html>

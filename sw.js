@@ -25,9 +25,9 @@ const assets = [
 ];
 
 self.addEventListener("install", (evt) => {
-  // definisi SW ketika di insall alah ia akan berhenti penginstalan ketika browser di load
+  // definisi SW ketika di insall ialah ia akan berhenti penginstalan ketika browser di load
   // if not exist he make a cache with name staticCachName and if exist he make her
-  // Caches.open result a Promis
+  // Caches.open result a Promise
   evt.waitUntil(
     caches.open(staticCacheName).then((cache) => {
       cache.addAll(assets);
