@@ -1,6 +1,5 @@
 const staticCacheName = "site-static-v2";
 const dynamicCache = "site-dynamic-v1";
-
 const assets = [
   "/",
   "/index.html",
@@ -19,22 +18,20 @@ const assets = [
   "/assets/css/templatemo-lava.css",
   "/assets/css/owl-carousel.css",
   "https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js",
-  "/img/folio_bergaris.jpg",
-  "/img/folio2.jpg",
-  "/img/kertasBINDER.jpeg",
+  "/assets/fonts/fontawesome-webfont.woff2?v=4.7.0",
 ];
 
 self.addEventListener("install", (evt) => {
-  // definisi SW ketika di insall ialah ia akan berhenti penginstalan ketika browser di load
+  // definisi SW ketik di insall ilah iaka berhenti penginstalan ketika browser di load
   // if not exist he make a cache with name staticCachName and if exist he make her
-  // Caches.open result a Promise
+  // Caches.open result a Promis
   evt.waitUntil(
     caches.open(staticCacheName).then((cache) => {
       cache.addAll(assets);
     })
   );
 });
-// activated service worke
+// activated service worker
 self.addEventListener("activate", (evt) => {
   evt.waitUntil(
     caches.keys().then((key) => {
@@ -47,7 +44,7 @@ self.addEventListener("activate", (evt) => {
   );
 });
 
-// fetch assets from pre-cach
+// fungsi utama => ambil data dari URL
 self.addEventListener("fetch", (evt) => {
   evt.respondWith(
     caches.match(evt.request).then((cacheRes) => {

@@ -76,15 +76,12 @@
 
   $(document).ready(function () {
     $('a[href^="#welcome"]').addClass("active");
-
-    //smoothscroll
     $(".menu-item").on("click", function (e) {
       e.preventDefault();
       var athis = this;
       var target = this.hash,
         menu = target;
       var $target = $(target);
-
       $("html, body")
         .stop()
         .animate(
@@ -103,7 +100,6 @@
 
     $(window).scroll(function (event) {
       var scrollPos = $(document).scrollTop() + 80;
-
       if (scrollPos === 0) {
         $('a[href^="#welcome"]').addClass("active");
         return;
