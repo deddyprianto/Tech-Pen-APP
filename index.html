@@ -267,7 +267,7 @@ let fonts = [{
         text(txtName, 90, 60);
         text(txtDate, 190, 60); 
         translate(0, margin + 7);
-        text(txtContent, 95, 60, 200 /*, 800 */);
+        text(txtContent, 110, 80, 200 /*, 800 */);
       }
       else if(bg.width === 960){
         background(bg);
@@ -286,7 +286,7 @@ let fonts = [{
         text(txtName, 40, 25);
         text(txtDate, 200, 25); 
         translate(0, margin + 7);
-        text(txtContent, 40, 50, 160 /*, 800 */);
+        text(txtContent, 40, 50, 250 /*, 800 */);
       }else if(bg.width === 735){
         background(bg);
         margin = 10.5;
@@ -295,7 +295,7 @@ let fonts = [{
         text(txtName, 76, 70);
         text(txtDate, 200, 70); 
         translate(0, margin + 7);
-        text(txtContent, 10, 80, 160 /*, 800 */);
+        text(txtContent, 10, 80, 250 /*, 800 */);
       }else if(bg.width === 747){
         background(bg);
         margin = 10.5;
@@ -304,7 +304,7 @@ let fonts = [{
         text(txtName, 140, 25);
         text(txtDate, 250, 25); 
         translate(0, margin + 7);
-        text(txtContent, 167, 35, 160 /*, 800 */);
+        text(txtContent, 167, 35, 150 /*, 800 */);
       }
       else{
         background(bg);
@@ -346,8 +346,7 @@ let fonts = [{
   <script>
     function downloadCanvas(c, filename) {
       /// create an "off-screen" anchor tag
-      var lnk = document.createElement('a'),
-        e;
+      var lnk = document.createElement('a'),e;
       /// the key here is to set the download attribute of the a tag
       lnk.download = filename;
       /// convert canvas content to data-uri for link. When download
@@ -410,7 +409,7 @@ let fonts = [{
                   <input type="text" class="form-control" id="date" oninput="txtDate = this.value">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="name">Nama </label>
+                  <label for="name">Untuk...</label>
                   <input type="text" class="form-control" id="name" oninput="txtName = this.value">
                 </div>
               </div>
